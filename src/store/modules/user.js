@@ -48,7 +48,20 @@ const actions = {
         return new Promise((resolve, reject) => {
             getInfo(state.token).then(res => {
                 const { data } = res;
-                console.log(data)
+                console.log(data);
+                if (!data) {
+                    reject('Verification failed, please Login again.')
+                }
+                const { roles, name, avatar, introduction } = data;
+                if (!roles || roles.length <= 0) {
+                    reject('getInfo: roles must be a non-null array!')
+                }
+
+                commit('SET_ROLES', roles)
+                commit('SET_NAME', name)
+                commit('SET_AVATAR', avatar)
+                commit('SET_INTRODUCTION', introduction)
+                resolve(data)
             })
         })
     },
@@ -63,7 +76,7 @@ const actions = {
     },
     resetToken({ commit }) {
         return new Promise(resolve => {
-            console.log(resetToken)
+            // console.log(resetToken)
             resolve()
         })
     },

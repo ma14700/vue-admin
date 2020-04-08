@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+import Layout from '@/layout'
+
 
 export const constantRoutes = [
   {
@@ -38,6 +40,12 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
     ]
+  }
+]
+
+export const asyncRoutes = [
+  {
+    path: '/permission'
   }
 ]
 
